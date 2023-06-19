@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Men's Wear</title>
+  <style>
+    .product-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    
+    .product {
+      width: 48%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .product img {
+      width: 50%;
+      height: auto;
+    }
+    
+    .product h3 {
+      margin-top: 10px;
+    }
+    
+    .product p {
+      margin-top: 5px;
+    }
+    
+    .product .price {
+      font-weight: bold;
+    }
+    
+    .product .rating {
+      color: #888;
+      margin-bottom: 5px;
+    }
+    
+    .product .add-to-cart {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 6px 12px;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .product .add-to-cart:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <script>
+    function addToCart(productName, price, imageUrl) {
+      // Get the cart items from local storage
+      var cartItems = localStorage.getItem('cartItems');
+      
+      // Parse the cart items as JSON or create an empty array if it's null
+      cartItems = cartItems ? JSON.parse(cartItems) : [];
+      
+      // Create a new product object
+      var product = {
+        productName: productName,
+        price: price,
+        imageUrl: imageUrl
+      };
+      
+      // Add the product to the cart items array
+      cartItems.push(product);
+      
+      // Store the updated cart items back to local storage
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+  </script>
+</head>
+<body>
+  <h1>Men's Wear</h1>
+  
+  <section class="product-container">
+    <div class="product">
+      <img src="picture/tshirt.jpg" alt="Product 1">
+      <h3>t-shirt</h3>
+      <p class="price">Rs.300</p>
+      <p class="rating">Rating: 4.5/5</p>
+      <a href="#" class="add-to-cart" onclick="addToCart('t-shirt', 300, 'picture/tshirt.jpg')">Add to Cart</a>
+    </div>
+    
+    <div class="product">
+      <img src="picture/indianwear.jpg" alt="Product 2">
+      <h3>indian wear</h3>
+      <p class="price">Rs.4000</p>
+      <p class="rating">Rating: 4.2/5</p>
+      <a href="#" class="add-to-cart" onclick="addToCart('indian wear', 4000, 'picture/indianwear.jpg')">Add to Cart</a>
+    </div>
+    
+    <div class="product">
+      <img src="picture/formals.jpg" alt="Product 3">
+      <h3>formals</h3>
+      <p class="price">Rs.5000</p>
+      <p class="rating">Rating: 4.7/5</p>
+      <a href="#" class="add-to-cart" onclick="addToCart('formals', 5000, 'picture/formals.jpg')">Add to Cart</a>
+    </div>
+    
+    <div class="product">
+      <img src="picture/jeans.jpeg" alt="Product 4">
+      <h3>Jeans</h3>
+      <p class="price">Rs.1000</p>
+      <p class="rating">Rating: 4.0/5</p>
+      <a href="#" class="add-to-cart" onclick="addToCart('Jeans', 1000, 'picture/jeans.jpeg')">Add to Cart</a>
+    </div>
+    
+    <!-- Add more products here -->
+  </section>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cart</title>
+  <style>
+    .cart-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .cart-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+    
+    .cart-item .item-details {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .cart-item .item-details .item-name {
+      font-weight: bold;
+    }
+    
+    .cart-item .item-details .item-price {
+      color: #888;
+    }
+    
+    .subtotal {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    
+    .buy-now {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    .buy-now:hover {
+      background-color: #45a049;
+    }
+  </style>
+  <script>
+    function removeFromCart(index) {
+      // Get the cart items from local storage
+      var cartItems = localStorage.getItem('cartItems');
+
+      // Parse the cart items as JSON or create an empty array if it's null
+      cartItems = cartItems ? JSON.parse(cartItems) : [];
+
+      // Remove the item at the specified index from the cart items array
+      if (index >= 0 && index < cartItems.length) {
+        cartItems.splice(index, 1);
+      }
+
+      // Store the updated cart items back to local storage
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+      // Reload the page to reflect the changes
+      location.reload();
+    }
+
+    function calculateSubtotal() {
+      // Get the cart items from local storage
+      var cartItems = localStorage.getItem('cartItems');
+
+      // Parse the cart items as JSON or create an empty array if it's null
+      cartItems = cartItems ? JSON.parse(cartItems) : [];
+
+      // Calculate the subtotal
+      var subtotal = 0;
+      for (var i = 0; i < cartItems.length; i++) {
+        subtotal += cartItems[i].price;
+      }
+
+      // Display the subtotal
+      var subtotalElement = document.getElementById('subtotal');
+      subtotalElement.textContent = 'Subtotal: Rs. ' + subtotal;
+    }
+  </script>
+</head>
+<body>
+  <h1>Cart</h1>
+  
+  <div class="cart-container">
+    <div id="cart-items">
+      <!-- Cart items will be dynamically added here -->
+    </div>
+    <div id="subtotal"></div>
+    <button class="buy-now" onclick="alert('Thank you for your purchase!')">Buy Now</button>
+  </div>
+  
+  <script>
+    // Get the cart items from local storage
+    var cartItems = localStorage.getItem('cartItems');
+
+    // Parse the cart items as JSON or create an empty array if it's null
+    cartItems = cartItems ? JSON.parse(cartItems) : [];
+
+    // Get the cart items container element
+    var cartItemsContainer = document.getElementById('cart-items');
+
+    // Check if there are items in the cart
+    if (cartItems.length > 0) {
+      // Loop through the cart items and display them
+      for (var i = 0; i < cartItems.length; i++) {
+        var cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+
+        var itemImage = document.createElement('img');
+        itemImage.src = cartItems[i].imageUrl;
+        itemImage.alt = cartItems[i].productName;
+
+        var itemDetails = document.createElement('div');
+        itemDetails.classList.add('item-details');
+
+        var itemName = document.createElement('div');
+        itemName.classList.add('item-name');
+        itemName.textContent = cartItems[i].productName;
+
+        var itemPrice = document.createElement('div');
+        itemPrice.classList.add('item-price');
+        itemPrice.textContent = 'Price: Rs. ' + cartItems[i].price;
+
+        var removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', (function(index) {
+          return function() {
+            removeFromCart(index);
+          }
+        })(i));
+
+        itemDetails.appendChild(itemName);
+        itemDetails.appendChild(itemPrice);
+
+        cartItem.appendChild(itemImage);
+        cartItem.appendChild(itemDetails);
+        cartItem.appendChild(removeButton);
+
+        cartItemsContainer.appendChild(cartItem);
+      }
+
+      // Calculate and display the subtotal
+      calculateSubtotal();
+    } else {
+      // Display a message if the cart is empty
+      cartItemsContainer.textContent = "Your cart is empty.";
+    }
+  </script>
+</body>
+</html>

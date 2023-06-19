@@ -1,0 +1,176 @@
+/* Styles for header and navigation */
+header {
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .nav-item {
+    margin-left: 10px;
+  }
+  
+  .nav-item a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s, font-size 0.3s;
+  }
+  
+  .nav-item:hover a {
+    color: #555;
+    font-size: 18px;
+    transform: scale(1.1);
+  }
+  
+  /* Styles for hero section */
+  .hero {
+    background-color: #f5f5f5;
+    
+   
+    padding: 80px;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    top: -500px;
+   
+  }
+  
+  .hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    
+  }
+  
+  .hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  
+  /* Styles for tagline section */
+  .tagline {
+    text-align: center;
+    background-color: #f0f0f0;
+    
+   
+  }
+  
+  .tagline p {
+    font-size: 20px;
+  }
+  
+  /* Styles for featured products section */
+  .featured-products {
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .featured-products h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .product-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .product {
+    flex: 0 0 calc(50% - 15px);
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  
+  .product img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .fade-in {
+    animation: fade-in 1s forwards;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  
+  
+  .product img {
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    max-height: 300px;
+  }
+  
+  .fade-in {
+    animation: fade-in 1s forwards;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Styles for footer */
+  footer {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+  }
+  .hero {
+    position: relative;
+    background-image: url('picture/back2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px; /* Adjust the height as needed */
+  }
+  
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+  }
+  
+  .hero-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .hero-content p {
+    font-size: 18px;
+  }
+  
+  .tagline {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
